@@ -1,6 +1,15 @@
 import { z } from "zod";
 
-const PatientFormSchemaValidation = z.object({
+export const PatientRegistrationSchemaValidaiton = z.object({
+  fullname: z
+    .string()
+    .min(2, "At least a name is required")
+    .max(50, "The limit is 50 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string(),
+});
+
+export const PatientFormSchemaValidation = z.object({
   fullName: z
     .string()
     .min(2, "At least a name is required")
@@ -31,7 +40,7 @@ const PatientFormSchemaValidation = z.object({
   currentMedicines: z.string().optional(),
   familyMedicalHistory: z.string().optional(),
   pastFamilyMedicalHistory: z.string().optional(),
-  idType: z.enum(["DNI", "Carnet de Extranjería", "Carnet de Identidad"]),
+  idType: z.enum(["DNI", "Carnet de Identidad", "CUIT"]),
   idNumber: z
     .string()
     .min(6, "The limit is 6 characters")
