@@ -36,7 +36,22 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
-// TODO: Get a single user
+/**
+ * Get a user by id
+ *
+ * @param userId
+ * @returns User
+ * @Error Shows by console the error
+ */
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+
+    return stringifyValue(user);
+  } catch (error) {
+    console.error("There was an error when getting the user: ", error);
+  }
+};
 
 // TODO: Register a patient
 
