@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const PatientRegistrationSchemaValidaiton = z.object({
+export const PatientRegistrationSchemaValidation = z.object({
   fullname: z
     .string()
     .min(2, "At least a name is required")
@@ -9,6 +9,7 @@ export const PatientRegistrationSchemaValidaiton = z.object({
   phone: z.string(),
 });
 
+// TODO: Refactor some variable names for better readability
 export const PatientFormSchemaValidation = z.object({
   fullName: z
     .string()
@@ -64,4 +65,16 @@ export const PatientFormSchemaValidation = z.object({
     .refine((value) => value === true, {
       message: "You must accept the privacy consent",
     }),
+});
+
+export const CreateAppointFormSchemaValidation = z.object({
+  reason: z
+    .string()
+    .min(5, "The reason must be at least 5 characters long")
+    .max(50, "The limit is 50 characters"),
+  additionalNotes: z
+    .string()
+    .min(10, "The reason must be at least 10 characters long")
+    .max(100, "The limit is 100 characters"),
+  appointmentDate: z.coerce.date(),
 });
