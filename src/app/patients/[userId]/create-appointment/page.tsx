@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function AppointmentForm() {
   return (
-    <div className="bg-[#080A10] flex gap-72 min-h-screen items-center text-slate-200">
+    <div className="bg-[#080A10] flex gap-72 min-h-screen items-center p-20 text-slate-200">
       <div className="flex flex-col gap-10 justify-center">
         <div>
           <h2 className="text-5xl font-bold mb-4">Hola!</h2>
