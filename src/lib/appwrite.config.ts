@@ -11,3 +11,5 @@ client
 
 export const databases = new appwriteSdk.Databases(client);
 export const users = new appwriteSdk.Users(client);
+export const storage = new appwriteSdk.Storage(client);
+export const messaging = new appwriteSdk.Messaging(client);
