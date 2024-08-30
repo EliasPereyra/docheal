@@ -34,3 +34,10 @@ export function encryptKey(key: string) {
 export function decryptKey(key: string) {
   return atob(key);
 }
+
+/**
+ *
+ * @param file
+ * @returns string
+ */
+export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
