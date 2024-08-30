@@ -13,9 +13,9 @@ export function cn(...inputs: ClassValue[]) {
 export const stringifyValue = (value: unknown) =>
   JSON.parse(JSON.stringify(value));
 
-// TODO: reemplazar btoa con una función de seguridad mas robusta
+// FIX: reemplazar btoa con una función de seguridad mas robusta
 /**
- * Una función que funciona para "encriptar" la clave, usando la función btoa.
+ * Una función para "encriptar" la clave, usando la función btoa.
  *
  * @param key
  * @returns string
@@ -24,6 +24,13 @@ export function encryptKey(key: string) {
   return btoa(key);
 }
 
+// FIX: change the atob func to a safer one
+/**
+ * Una función para "desincriptar" la clave, usando la función atob.
+ *
+ * @param key
+ * @returns string
+ */
 export function decryptKey(key: string) {
   return atob(key);
 }
