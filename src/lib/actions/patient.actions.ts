@@ -19,7 +19,7 @@ export const createUser = async (user: CreateUserParams) => {
       user.email,
       user.phone,
       undefined,
-      user.name
+      user.fullname
     );
 
     return stringifyValue(newUser);
@@ -53,6 +53,6 @@ export const getUser = async (userId: string) => {
   }
 };
 
-// TODO: Register a patient
+// TODO: Register all the basic and medical info of a patient
 
 // TODO: get a single patient
