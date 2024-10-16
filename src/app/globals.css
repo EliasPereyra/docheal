@@ -70,7 +70,11 @@
 
 @layer utilities {
   .date-picker {
-    @apply w-full bg-[#181D30] border-[#2C3558] h-11 p-2 rounded-sm outline-none overflow-hidden border-transparent placeholder:text-slate-900 !important;
+    @apply w-full h-11 p-2 bg-[#181D30] border-[#2C3558] rounded-sm outline-none overflow-hidden border-transparent placeholder:text-slate-900 !important;
+  }
+
+  .input-phone {
+    @apply w-full h-10 p-0 border border-[#2C3558] rounded-sm outline-none text-slate-900 bg-[#181D30] overflow-hidden !important;
   }
 }
 
@@ -130,4 +134,11 @@
 .react-datepicker__time-list-item {
   display: flex !important;
   align-items: center !important;
+}
+
+.PhoneInputInput {
+  outline: none;
+  margin-left: 4px;
+  font-size: 14px;
+  font-weight: 500;
 }
