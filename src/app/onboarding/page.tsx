@@ -13,13 +13,16 @@ export default function Onboarding({ searchParams }: SearchParamProps) {
 
       <div className="flex flex-col gap-10 justify-center">
         <div className="flex flex-col gap-2">
-          <Image
-            src="/assets/docheal-logo.png"
-            alt="Logo oficial de la página"
-            width={256}
-            height={212}
-            className="w-24 mb-6"
-          />
+          <Link href="/">
+            <Image
+              src="/assets/docheal-logo.png"
+              alt="Logo oficial de la página"
+              width={256}
+              height={212}
+              className="w-24 mb-6"
+              priority
+            />
+          </Link>
           <h2 className="text-5xl font-bold mb-2">Hola!</h2>
           <p className="text-slate-300">
             Comencemos con cargar ciertos datos fundamentales.
@@ -27,9 +30,8 @@ export default function Onboarding({ searchParams }: SearchParamProps) {
         </div>
         {/* El registro o inicio de sesion */}
         <RegisterForm />
-        {/* TODO: agregar el link para el admin */}
         <div>
-          <Link href="/onboarding/?admin=true">Admin</Link>
+          <Link href="/onboarding?admin=true">Admin</Link>
         </div>
       </div>
     </section>
