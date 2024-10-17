@@ -76,6 +76,22 @@
   .input-phone {
     @apply w-full h-10 p-0 border border-[#2C3558] rounded-sm outline-none text-slate-900 bg-[#181D30] overflow-hidden !important;
   }
+
+  .shad-error {
+    @apply text-red-400 !important;
+  }
+
+  .shad-otp {
+    @apply w-full flex !important;
+  }
+
+  .shad-otp-slot {
+    @apply font-bold text-[#2C3558] flex justify-center gap-4 border-[#2C3558] rounded-lg size-16 outline-none !important;
+  }
+
+  .shad-alert-dialog {
+    @apply bg-[#181D30] border-[#2C3558] outline-none space-y-5 !important;
+  }
 }
 
 .react-datepicker-wrapper.date-picker {
