@@ -31,6 +31,8 @@ type CustomFormFieldProps = {
   placeholder?: string;
   showTimeSelect?: boolean;
   fieldType?: FormFieldType;
+  bgTransparent?: boolean;
+  borderTransparent?: boolean;
 };
 
 export function InputType({
@@ -70,15 +72,25 @@ export function InputType({
             placeholder={props.placeholder}
             value={field.value}
             defaultCountry="AR"
+            withCountryCallingCode
             international
             onChange={field.onChange}
+            className="input-phone"
           />
         </FormControl>
       );
     case FormFieldType.CHECKBOX:
       return (
         <FormControl>
-          <div className="flex gap-4 items-center bg-[#181D30] border border-[#2C3558] px-5 py-2.5 rounded-sm">
+          <div
+            className={`flex gap-4 items-center ${
+              props.bgTransparent ? "bg-transparent" : "bg-[#181D30]"
+            } border ${
+              props.borderTransparent
+                ? "border-transparent"
+                : "border-[#2C3558]"
+            } px-5 py-2 rounded-sm`}
+          >
             <Checkbox
               id={field.name}
               checked={field.value}
