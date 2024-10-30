@@ -41,3 +41,11 @@ export function decryptKey(key: string) {
  * @returns string
  */
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
+
+/**
+ * Esta función hace una conversión de un string a un objeto usando primero la función stringify y luego la función parse de JSON.
+ *
+ * @param value
+ * @returns string
+ */
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
