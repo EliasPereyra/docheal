@@ -1,23 +1,26 @@
+export const Gender = ["Hombre", "Mujer", "Otro"];
+
 export const patientFormDefaultValues = {
-  fullname: "",
+  fullName: "",
   email: "",
-  phone: "",
-  birthDate: "",
-  gender: "",
+  phoneNumber: "",
+  birthDate: new Date(Date.now()),
+  gender: "Hombre",
   address: "",
   profession: "",
-  civilStatus: "",
+  civilStatus: "Single",
   phoneNumberAlt: "",
-  healthInsurance: "",
   healthInsuranceNumber: "",
   allergies: "",
   currentMedicines: "",
   familyMedicalHistory: "",
   pastFamilyMedicalHistory: "",
-  idType: "DNI",
+  idType: undefined,
   idNumber: "",
-  idPhoto: [],
+  idPhotoUrl: [],
   treatmentConsent: false,
   disclosureConsent: false,
   privacyConsent: false,
 };
+
+export const IDTypes = ["DNI", "Carnet de Extranjería", "Pasaporte"];
