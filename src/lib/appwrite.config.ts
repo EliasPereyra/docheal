@@ -1,6 +1,13 @@
 import * as appwriteSdk from "node-appwrite";
 
-const { NEXT_PUBLIC_TD_ENDPOINT, TD_PROJECT_ID, TD_API_KEY } = process.env;
+export const {
+  NEXT_PUBLIC_TD_ENDPOINT,
+  TD_PROJECT_ID,
+  TD_API_KEY,
+  TD_BUCKET_ID,
+  TD_DATABASE_ID,
+  TD_PATIENT_COLLECTION_ID,
+} = process.env;
 
 const client = new appwriteSdk.Client();
 
