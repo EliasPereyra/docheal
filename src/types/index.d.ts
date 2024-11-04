@@ -16,7 +16,7 @@ declare interface User extends CreateUserParams {
 }
 
 declare interface RegisterPatientParams extends CreateUserParams {
-  fullName: string;
+  fullname: string;
   email: string;
   phoneNumber: string;
   birthDate: Date;
