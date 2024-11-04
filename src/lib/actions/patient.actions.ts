@@ -1,9 +1,16 @@
 "use server";
 
-import { ID, Query } from "node-appwrite";
-import { users } from "../appwrite.config";
+import { ID, Query, InputFile } from "node-appwrite";
+import {
+  databases,
+  storage,
+  TD_BUCKET_ID,
+  TD_DATABASE_ID,
+  TD_PATIENT_COLLECTION_ID,
+  users,
+} from "../appwrite.config";
 
-import { stringifyValue } from "../utils";
+import { parseStringify, stringifyValue } from "../utils";
 
 /**
  * Create an appwrite user
@@ -54,5 +61,45 @@ export const getUser = async (userId: string) => {
 };
 
 // TODO: Register all the basic and medical info of a patient
+export const registerPatient = async ({
+  idPhotoUrl,
+  ...patient
+}: RegisterPatientParams) => {
+  try {
+    let photoFile;
+    if (idPhotoUrl) {
+      const inputFile = InputFile.fromBlob(
+        idPhotoUrl.get("blobFile") as Blob,
+        idPhotoUrl.get("fileName") as string
+      );
+
+      photoFile = await storage.createFile(
+        TD_BUCKET_ID!,
+        ID.unique(),
+        inputFile
+      );
+    }
+
+    const newPatient = await databases.createDocument(
+      TD_DATABASE_ID!,
+      TD_PATIENT_COLLECTION_ID!,
+      ID.unique(),
+      {
+        idDocumentNumber: photoFile?.$id ? photoFile.$id : null,
+        idPhotoUrl: photoFile?.$id
+          ? `${process.env
+              .NEXT_PUBLIC_TD_ENDPOINT!}/storage/buckets/${TD_BUCKET_ID}/files/${
+              photoFile.$id
+            }/view??project=${process.env.TD_PROJECT_ID!}`
+          : null,
+        ...patient,
+      }
+    );
+
+    return parseStringify(newPatient);
+  } catch (error) {
+    console.error("An error occurred while registering the patient: ", error);
+  }
+};
 
 // TODO: get a single patient
