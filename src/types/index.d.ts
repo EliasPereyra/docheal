@@ -38,4 +38,11 @@ declare interface RegisterPatientParams extends CreateUserParams {
   privacyConsent: boolean;
 }
 
-// TODO: create an interface for generating an appointment
+declare interface CreateAppointmentParams {
+  userId: string;
+  patient: string;
+  reason: string;
+  additionalNotes: string;
+  appointmentDate: Date;
+  status?: "pendiente" | "cancelado" | "completado";
+}
