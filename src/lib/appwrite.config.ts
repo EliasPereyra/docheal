@@ -7,6 +7,7 @@ export const {
   TD_BUCKET_ID,
   TD_DATABASE_ID,
   TD_PATIENT_COLLECTION_ID,
+  TD_APPOINTMENT_COLLECTION_ID,
 } = process.env;
 
 const client = new appwriteSdk.Client();
