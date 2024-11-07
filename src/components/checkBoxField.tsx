@@ -5,7 +5,7 @@ export interface InputProps
 
 export function CheckboxField({ labelText, ...props }: { labelText: string }) {
   return (
-    <div className="flex gap-2 items-center" {...props}>
+    <div {...props}>
       <Checkbox className="border-[#2C3558]" />
       <label>{labelText}</label>
     </div>
