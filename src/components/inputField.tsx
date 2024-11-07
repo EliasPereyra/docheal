@@ -1,5 +1,5 @@
 import { Control } from "react-hook-form";
-import { FormControl } from "./ui/form";
+import { FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 
 interface CustomProps {
@@ -8,31 +8,34 @@ interface CustomProps {
 
 export function InputField({
   labelText,
-  inputType,
   name,
   placeholder,
-  props,
-  image,
+  control,
 }: {
   labelText: string;
-  inputType?: string;
   name: string;
   placeholder?: string;
-  props?: CustomProps;
-  image?: string;
+  control: Control<any>;
+  required?: boolean;
 }) {
   return (
-    <FormControl>
-      <div className="flex flex-col gap-2">
-        <label>{labelText}</label>
-        <Input
-          type={inputType || "text"}
-          className="bg-[#181D30] border-[#2C3558]"
-          name={name}
-          placeholder={placeholder}
-          {...props}
-        />
-      </div>
-    </FormControl>
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel htmlFor={field.name}>{labelText}</FormLabel>
+          <FormControl>
+            <div className="flex flex-col gap-2">
+              <Input
+                {...field}
+                className="bg-[#181D30] border-[#2C3558]"
+                placeholder={placeholder}
+              />
+            </div>
+          </FormControl>
+        </FormItem>
+      )}
+    />
   );
 }
