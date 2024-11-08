@@ -1,7 +1,15 @@
 import { Control } from "react-hook-form";
 import ReactDatePicker from "react-datepicker";
+import "react-phone-number-input/style.css";
+import "react-datepicker/dist/react-datepicker.css";
 
-import { FormControl, FormField, FormItem, FormLabel } from "./ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import PhoneInput from "react-phone-number-input";
@@ -33,6 +41,8 @@ type CustomFormFieldProps = {
   fieldType?: FormFieldType;
   bgTransparent?: boolean;
   borderTransparent?: boolean;
+  renderSkeleton?: (field: any) => React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export function InputType({
@@ -92,51 +102,48 @@ export function InputType({
             } px-5 py-2 rounded-sm`}
           >
             <Checkbox
-              id={field.name}
+              id={props.name}
               checked={field.value}
-              onChange={field.onChange}
+              onCheckedChange={field.onChange}
             />
-            <label htmlFor={field.name}>{props.label}</label>
+            <label htmlFor={props.name}>{props.label}</label>
           </div>
         </FormControl>
       );
     case FormFieldType.DATE_PICKER:
       return (
         <FormControl>
-          <div className="flex flex-col gap-2">
-            <FormLabel>Fecha de Nacimiento</FormLabel>
-            <div className="bg-[#181D30] border border-[#2C3558] rounded-sm">
-              <ReactDatePicker
-                selected={field.value}
-                showTimeSelect={props.showTimeSelect ?? false}
-                onChange={(date) => field.onChange(date)}
-                dateFormat="dd/MM/yyyy"
-                timeInputLabel="Hora:"
-                wrapperClassName="date-picker"
-              />
-            </div>
+          <div className="bg-[#181D30] border border-[#2C3558] rounded-sm">
+            <ReactDatePicker
+              selected={field.value}
+              showTimeSelect={props.showTimeSelect ?? false}
+              onChange={(date) => field.onChange(date)}
+              dateFormat="dd/MM/yyyy"
+              timeInputLabel="Hora:"
+              wrapperClassName="date-picker"
+            />
           </div>
         </FormControl>
       );
     case FormFieldType.SELECT:
       return (
         <div className="flex flex-col gap-2">
-          <label>Estado Civil</label>
           <FormControl>
-            <Select>
+            <Select onValueChange={field.onChange} defaultValue={field.value}>
               <SelectTrigger className="bg-[#181D30] border-[#2C3558] text-slate-300">
-                <SelectValue />
+                <SelectValue placeholder={props.placeholder} />
               </SelectTrigger>
               <SelectContent className="bg-[#181D30] border-[#2C3558] text-slate-300">
-                <SelectItem value="Casado/a">Casado/a</SelectItem>
-                <SelectItem value="Soltero/a">Soltero/a</SelectItem>
-                <SelectItem value="Divorciado/a">Divorciado/a</SelectItem>
-                <SelectItem value="Viudo/a">Viudo/a</SelectItem>
+                {props.children}
               </SelectContent>
             </Select>
           </FormControl>
         </div>
       );
+    case FormFieldType.SKELETON:
+      return props.renderSkeleton ? props.renderSkeleton(field) : null;
+    default:
+      return null;
   }
 }
 
@@ -152,6 +159,7 @@ const CustomFormField = (props: CustomFormFieldProps) => {
             <FormLabel>{props.label}</FormLabel>
           )}
           <InputType field={field} props={props} />
+          <FormMessage />
         </FormItem>
       )}
     />
