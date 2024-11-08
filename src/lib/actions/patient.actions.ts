@@ -60,7 +60,6 @@ export const getUser = async (userId: string) => {
   }
 };
 
-// TODO: Register all the basic and medical info of a patient
 export const registerPatient = async ({
   idPhotoUrl,
   ...patient
@@ -102,4 +101,16 @@ export const registerPatient = async ({
   }
 };
 
-// TODO: get a single patient
+export const getPatient = async (patientId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      TD_DATABASE_ID!,
+      TD_PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", patientId)]
+    );
+
+    return parseStringify(patients.documents[0]);
+  } catch (error) {
+    console.error("An error occurred while getting the patient: ", error);
+  }
+};
