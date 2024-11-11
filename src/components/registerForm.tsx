@@ -7,12 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 
-import { PatientRegistrationSchemaValidation } from "@/lib/validation";
-import { patientFormDefaultValues } from "@/constants/index";
-import { InputField } from "./inputField";
 import { Form } from "./ui/form";
 import { createUser, getUser } from "@/lib/actions/patient.actions";
 import { SubmitButton } from "./submitButton";
+import CustomFormField, { FormFieldType } from "./CustomFormField";
+import { PatientRegistrationSchemaValidation } from "@/lib/validation";
+import { patientFormDefaultValues } from "@/constants/index";
 
 /**
  * A component for registering a new patient. It redirects to the patient page if the user already exists or once the registration is successful.
@@ -47,14 +47,13 @@ export function RegisterForm() {
 
       const newUser = await createUser(user);
       if (await getUser(newUser.$id)) {
-        toast.error("El usuario ya existe");
         setIsLoading(false);
-        return;
+        router.push(`/patients/${newUser.$id}/register`);
       }
 
       if (newUser) {
         toast.success("Usuario creado exitosamente");
-        router.push(`/patient/${newUser.$id}/register`);
+        router.push(`/patients/${newUser.$id}/register`);
       }
     } catch (error) {
       console.error("Error al registrar el usuario: ", error);
@@ -70,28 +69,31 @@ export function RegisterForm() {
         className="flex flex-col gap-4"
       >
         <Toaster position="top-right" />
-        <InputField
-          labelText="Nombre Completo"
+        <CustomFormField
+          fieldType={FormFieldType.INPUT}
+          label="Nombre Completo"
           control={form.control}
           name="fullname"
           placeholder="Juan Perez"
         />
 
-        <InputField
-          labelText="Email"
+        <CustomFormField
+          fieldType={FormFieldType.INPUT}
+          label="Email"
           control={form.control}
           name="email"
           placeholder="juanperez@hotmail.com"
         />
 
-        <InputField
-          labelText="Número de Teléfono"
+        <CustomFormField
+          fieldType={FormFieldType.PHONE_INPUT}
+          label="Número de Teléfono"
           name="phone"
           control={form.control}
           placeholder="54 9 1234 5678"
         />
 
-        <SubmitButton isLoading={isLoading} className="bg-[#4779D9]">
+        <SubmitButton isLoading={isLoading} className="bg-[#0C8EAF]">
           Comencemos
         </SubmitButton>
       </form>
