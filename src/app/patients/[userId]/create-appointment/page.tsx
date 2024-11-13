@@ -1,30 +1,42 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
+import Image from "next/image";
 
-export default function AppointmentForm() {
+import { getPatient } from "@/lib/actions/patient.actions";
+import AppointmentForm from "@/components/appointmentForm";
+
+export default async function Appointment({
+  params: { userId },
+}: SearchParamProps) {
+  const patientId = await getPatient(userId);
+
   return (
-    <div className="bg-[#080A10] flex gap-72 min-h-screen items-center p-20 text-slate-200">
-      <div className="flex flex-col gap-10 justify-center">
-        <div>
-          <h2 className="text-5xl font-bold mb-4">Hola!</h2>
-          <p>Crea un nuevo turno.</p>
+    <div className="bg-[#080A10] flex space-between items-center gap-10 min-h-screen">
+      <div className="absolute left-20 top-10 h-96 w-96 blur-[150px] opacity-35 bg-[#2B3457] z-0"></div>
+      <section className="flex flex-col gap-10 justify-center px-20 w-full z-10">
+        <div className="flex flex-col gap-2">
+          <Link href="/">
+            <Image
+              src={"/assets/docheal-logo.png"}
+              alt="Logo oficial de la página"
+              width={256}
+              height={212}
+              className="w-24 mb-10"
+            />
+          </Link>
+          <h2 className="text-5xl font-bold">Solicita un turno</h2>
+          <p className="text-slate-400">
+            Puedes solicitar un turno para la fecha y hora que desees.
+          </p>
         </div>
-        <form className="flex flex-col gap-4">
-          <label htmlFor="nombre">Razón de la consulta</label>
-          <Input className="bg-[#181D30] border-[#2C3558]" type="text" />
-
-          <label htmlFor="email">Comentarios/Notas adicionales</label>
-          <Textarea className="bg-[#181D30] border-[#2C3558]" />
-
-          <label htmlFor="phone">Fecha para el Turno</label>
-          <Input className="bg-[#181D30] border-[#2C3558]" type="number" />
-
-          <Button className="bg-[#4779D9]" type="submit">
-            Generar turno
-          </Button>
-        </form>
-      </div>
+        <AppointmentForm userId={userId} patientId={patientId?.$id} />
+      </section>
+      <Image
+        className="h-screen object-cover w-[30em] hidden md:block"
+        src="/assets/penthagon_pattern.jpg"
+        alt="Pentagon pattern"
+        width={256}
+        height={212}
+      />
     </div>
   );
 }
