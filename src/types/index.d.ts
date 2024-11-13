@@ -42,7 +42,7 @@ declare interface CreateAppointmentParams {
   userId: string;
   patient: string;
   reason: string;
-  additionalNotes: string;
+  additionalNotes?: string;
   appointmentDate: Date;
   status?: "pendiente" | "cancelado" | "completado";
 }
