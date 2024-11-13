@@ -86,11 +86,9 @@ export const CreateAppointFormSchemaValidation = z.object({
     .string()
     .min(5, "The reason must be at least 5 characters long")
     .max(50, "The limit is 50 characters"),
-  additionalNotes: z
-    .string()
-    .min(10, "The reason must be at least 10 characters long")
-    .max(100, "The limit is 100 characters"),
+  additionalNotes: z.string().optional(),
   appointmentDate: z.coerce.date(),
   userId: z.string(),
   status: z.enum(["pendiente", "cancelado", "completado"]).default("pendiente"),
+  patient: z.string(),
 });
