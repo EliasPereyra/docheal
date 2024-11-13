@@ -1,11 +1,12 @@
 export const Gender = ["Hombre", "Mujer", "Otro"];
 
 export const patientFormDefaultValues = {
+  userId: "",
   fullName: "",
   email: "",
   phoneNumber: "",
   birthDate: new Date(Date.now()),
-  gender: "Hombre",
+  gender: undefined,
   address: "",
   profession: "",
   civilStatus: "Single",
