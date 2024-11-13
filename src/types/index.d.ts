@@ -6,7 +6,7 @@ declare type SearchParamProps = {
 };
 
 declare interface CreateUserParams {
-  fullName: string;
+  fullname: string;
   email: string;
   phoneNumber: string;
 }
