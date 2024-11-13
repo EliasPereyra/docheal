@@ -101,12 +101,12 @@ export const registerPatient = async ({
   }
 };
 
-export const getPatient = async (patientId: string) => {
+export const getPatient = async (userId: string) => {
   try {
     const patients = await databases.listDocuments(
       TD_DATABASE_ID!,
       TD_PATIENT_COLLECTION_ID!,
-      [Query.equal("userId", patientId)]
+      [Query.equal("userId", [userId])]
     );
 
     return parseStringify(patients.documents[0]);
