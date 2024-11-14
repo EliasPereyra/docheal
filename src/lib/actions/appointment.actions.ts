@@ -4,6 +4,7 @@ import { ID, Query } from "node-appwrite";
 import { revalidatePath } from "next/cache";
 import {
   databases,
+  messaging,
   TD_APPOINTMENT_COLLECTION_ID,
   TD_DATABASE_ID,
 } from "../appwrite.config";
@@ -38,6 +39,7 @@ export const createAppointment = async (
  *
  * @returns { scheduleCount, pendingCount, cancelledCount, total, documents }
  */
+
 export const getLatestAppointments = async () => {
   try {
     const appointments = await databases.listDocuments(
@@ -79,5 +81,22 @@ export const getLatestAppointments = async () => {
     return parseStringify(data);
   } catch (error) {
     console.error("Error when trying to get latest appointments: ", error);
+  }
+};
+
+/**
+ * For creating a sms message.
+ *
+ * @param content
+ * @param userId
+ * @returns
+ */
+export const sendSMSNotification = async (content: string, userId: string) => {
+  try {
+    const sms = await messaging.createSms(ID.unique(), content, [], [userId]);
+
+    return parseStringify(sms);
+  } catch (error) {
+    console.error("There was an error when creating the sms: ", error);
   }
 };
