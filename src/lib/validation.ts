@@ -1,4 +1,4 @@
-import { string, z } from "zod";
+import { z } from "zod";
 
 /**
  * The validation schema for registering a patient.
@@ -88,7 +88,5 @@ export const CreateAppointFormSchemaValidation = z.object({
     .max(50, "The limit is 50 characters"),
   additionalNotes: z.string().optional(),
   appointmentDate: z.coerce.date(),
-  userId: z.string(),
   status: z.enum(["pendiente", "cancelado", "completado"]).default("pendiente"),
-  patient: z.string(),
 });
