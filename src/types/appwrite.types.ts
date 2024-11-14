@@ -29,7 +29,7 @@ export interface Appointment extends Models.Document {
   appointmentDate: Date;
   reason?: string;
   additionalNotes?: string;
-  status: "pending" | "cancelled" | "completed";
+  status: "pendiente" | "cancelado" | "anotado";
   userId?: string;
   cancellationReason?: string | null;
 }
