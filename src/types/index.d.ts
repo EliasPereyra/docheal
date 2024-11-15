@@ -46,3 +46,11 @@ declare interface CreateAppointmentParams {
   appointmentDate: Date;
   status?: "pendiente" | "cancelado" | "completado";
 }
+
+declare interface UpdateAppointmentParams {
+  userId: string;
+  appointmentId: string;
+  appointment: Appointment;
+  type: string;
+  status?: "pendiente" | "cancelado" | "anotado";
+}
