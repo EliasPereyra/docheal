@@ -7,7 +7,7 @@ import AppointmentForm from "@/components/appointmentForm";
 export default async function Appointment({
   params: { userId },
 }: SearchParamProps) {
-  const patientId = await getPatient(userId);
+  const patient = await getPatient(userId);
 
   return (
     <div className="bg-[#080A10] flex space-between items-center gap-10 min-h-screen">
@@ -28,7 +28,11 @@ export default async function Appointment({
             Puedes solicitar un turno para la fecha y hora que desees.
           </p>
         </div>
-        <AppointmentForm userId={userId} patientId={patientId?.$id} />
+        <AppointmentForm
+          type="crear"
+          userId={userId}
+          patientId={patient?.$id}
+        />
       </section>
       <Image
         className="h-screen object-cover w-[30em] hidden md:block"
