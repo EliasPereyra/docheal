@@ -88,5 +88,33 @@ export const CreateAppointFormSchemaValidation = z.object({
     .max(50, "The limit is 50 characters"),
   additionalNotes: z.string().optional(),
   appointmentDate: z.coerce.date(),
-  status: z.enum(["pendiente", "cancelado", "completado"]).default("pendiente"),
+  cancellationReason: z.string().optional(),
 });
+
+export const ConfirmAppointmentFormSchemaValidation = z.object({
+  reason: z.string().optional(),
+  additionalNotes: z.string().optional(),
+  appointmentDate: z.coerce.date(),
+  cancellationReason: z.string().optional(),
+});
+
+export const CancelAppointmentFormSchemaValidation = z.object({
+  reason: z.string().optional(),
+  appointmentDate: z.coerce.date(),
+  additionalNotes: z.string().optional(),
+  cancellationReason: z
+    .string()
+    .min(5, "The reason must be at least 5 characters long")
+    .max(500, "The limit is 500 characters"),
+});
+
+export const getAppointmentSchema = (type: string) => {
+  switch (type) {
+    case "confirmar":
+      return ConfirmAppointmentFormSchemaValidation;
+    case "cancelar":
+      return CancelAppointmentFormSchemaValidation;
+    default:
+      return CreateAppointFormSchemaValidation;
+  }
+};
