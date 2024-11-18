@@ -49,3 +49,13 @@ export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
  * @returns string
  */
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+
+/**
+ * Formatear la fehca usando la internacionalización de JavaScript.
+ *
+ * @param date
+ * @returns
+ */
+export const formatDate = ({ date }: { date: Date }) => {
+  return new Intl.DateTimeFormat("es", {}).format(date);
+};
