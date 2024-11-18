@@ -4,7 +4,7 @@ interface StateCardProps {
   count: number;
   label: string;
   icon: string;
-  type: "appointment" | "pending" | "cancelled";
+  type: "scheduled" | "pending" | "cancelled";
 }
 
 export default function StateCard({
@@ -14,34 +14,40 @@ export default function StateCard({
   type,
 }: StateCardProps) {
   switch (type) {
-    case "appointment":
+    case "scheduled":
       return (
-        <div className="bg-gradient-to-r from-[hsl(43,61%,44%)] from-40% to-[hsl(28,70%,29%)] border border-[#C0982F] to-110% px-16 py-6 rounded-md">
-          <div className="flex gap-4 align-center mb-2">
-            <Image src={icon} alt="" width={40} height={40} className="" />
-            <h2 className="text-3xl font-bold">{count}</h2>
+        <div className="p-0.5 bg-gradient-to-br from-[#2C3558] from-0% to-[#2c355841] to-100% rounded-md">
+          <div className="bg-gradient-to-bl from-[#282C3B] from-0% via-[#5B543F] via-67% to-[#2B2F3E] to-100% px-20 py-8 rounded-md">
+            <div className="flex gap-4 align-center mb-2">
+              <Image src={icon} alt="" width={40} height={40} />
+              <h2 className="text-4xl font-bold">{count}</h2>
+            </div>
+            <p className="text-lg">{label}</p>
           </div>
-          <p>{label}</p>
         </div>
       );
     case "pending":
       return (
-        <div className="bg-gradient-to-r from-[hsl(219,51%,50%)] from-40% to-[hsl(234,45%,18%)] border border-[#4779D9] to-110% px-16 py-6 rounded-md">
-          <div className="flex gap-4 align-center mb-2">
-            <Image src={icon} alt="" width={40} height={40} className="" />
-            <h2 className="text-3xl font-bold">{count}</h2>
+        <div className="p-0.5 bg-gradient-to-br from-[#2C3558] from-0% to-[#2c355841] to-100% rounded-md">
+          <div className="bg-gradient-to-br from-[#282C3B] from-0% via-[#3F4F6E] via-67% to-[#2B2F3E] to-100% px-20 py-8 rounded-md">
+            <div className="flex gap-4 align-center mb-2">
+              <Image src={icon} alt="" width={40} height={40} className="" />
+              <h2 className="text-4xl font-bold">{count}</h2>
+            </div>
+            <p className="text-lg">{label}</p>
           </div>
-          <p>{label}</p>
         </div>
       );
     case "cancelled":
       return (
-        <div className="bg-gradient-to-r from-[hsl(0,54%,52%)] from-40% to-[hsl(0,50%,31%)] border border-[#FC5E5E] to-110% px-16 py-6 rounded-md">
-          <div className="flex gap-4 align-center mb-2">
-            <Image src={icon} alt="" width={40} height={40} className="" />
-            <h2 className="text-3xl font-bold">{count}</h2>
+        <div className="p-0.5 bg-gradient-to-br from-[#2C3558] from-0% to-[#2c355841] to-100% rounded-md">
+          <div className="bg-gradient-to-br from-[#282C3B] from-0% via-[#5A3F3F] via-67% to-[#2B2F3E] to-100% px-20 py-8 rounded-md">
+            <div className="flex gap-4 align-center mb-2">
+              <Image src={icon} alt="" width={40} height={40} className="" />
+              <h2 className="text-4xl font-bold">{count}</h2>
+            </div>
+            <p className="text-lg">{label}</p>
           </div>
-          <p>{label}</p>
         </div>
       );
   }
