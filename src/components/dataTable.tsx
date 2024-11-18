@@ -16,7 +16,6 @@ import { decryptKey } from "@/lib/utils";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -37,7 +36,6 @@ export default function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    // importar la paginacion
   });
 
   const encryptedKey =
@@ -47,7 +45,6 @@ export default function DataTable<TData, TValue>({
 
   useEffect(() => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
-
     if (accessKey !== process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
       redirect("/");
     }
@@ -81,7 +78,7 @@ export default function DataTable<TData, TValue>({
                 key={row.id}
                 className={`p-8 ${
                   row.index % 2 === 0 ? "bg-[#111522]" : "bg-[#181D30]"
-                } border-none text-slate-200 hover:opacity-90 hover:bg-[#111523] data-[state=selected]:bg-[#0A0C14]`}
+                } border-none text-slate-200 hover:opacity-90 hover:bg-[#111523] data-[state=selected]:bg-[#030305]`}
                 data-state={row.getIsSelected() ?? "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
@@ -99,7 +96,7 @@ export default function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       <div className="flex justify-between border-[#2C3558]">
-        <Button className="rounded-none">
+        <Button className="rounded-none bg-transparent">
           <Image
             src={"/assets/icons/left-arrow-circle.svg"}
             alt="Icono con una flecha apuntando a la izquierda"
@@ -107,7 +104,7 @@ export default function DataTable<TData, TValue>({
             height={30}
           />
         </Button>
-        <Button className="rounded-none">
+        <Button className="rounded-none bg-transparent">
           <Image
             src={"/assets/icons/right-arrow-circle.svg"}
             alt="Icono con una flecha apuntando a la derecha"
