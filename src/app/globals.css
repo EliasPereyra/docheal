@@ -90,7 +90,7 @@
   }
 
   .shad-otp-slot {
-    @apply font-bold text-[#2C3558] flex justify-center gap-4 border-[#2C3558] rounded-lg size-16 outline-none !important;
+    @apply font-bold text-[#0C8EAF] flex justify-center gap-4 border-[#0C8EAF] rounded-lg size-16 outline-none !important;
   }
 
   .shad-alert-dialog {
