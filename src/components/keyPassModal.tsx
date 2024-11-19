@@ -78,7 +78,7 @@ export default function KeyPassModal() {
                 alt="Icono de cerrar"
                 width={20}
                 height={20}
-                className="cursor-pointer"
+                className="cursor-pointer w-6 h-6 text-white"
                 onClick={closeModal}
               />
             </Link>
@@ -112,7 +112,7 @@ export default function KeyPassModal() {
         <AlertDialogFooter>
           <AlertDialogAction
             onClick={(e) => validatePasskey(e)}
-            className="w-full"
+            className="w-full bg-[#0C8EAF] text-[#fff] hover:bg-[#13bbe6] transition-colors px-32 py-2 mt-5 rounded-sm"
           >
             Ingresar la Clave Admin
           </AlertDialogAction>
