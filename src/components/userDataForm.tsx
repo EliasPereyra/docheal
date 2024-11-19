@@ -91,7 +91,9 @@ export function UserDataForm({ user }: { user: User }) {
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="flex flex-col gap-4">
-            <h3 className="text-3xl font-bold">Información Personal</h3>
+            <h3 className="text-2xl md:text-3xl font-bold">
+              Información Personal
+            </h3>
           </div>
           {/* NOTE: Seccion de informacion personal */}
           <section className="flex flex-col gap-4">
@@ -101,7 +103,7 @@ export function UserDataForm({ user }: { user: User }) {
               label="Nombre Completo"
               fieldType={FormFieldType.INPUT}
             />
-            <div className="flex gap-10">
+            <div className="flex flex-col md:flex-row gap-10">
               <div className="flex flex-col gap-6 w-full">
                 <CustomFormField
                   control={form.control}
@@ -194,9 +196,11 @@ export function UserDataForm({ user }: { user: User }) {
 
           {/* NOTE Seccion de informacion medica */}
           <section className="flex flex-col gap-4">
-            <h3 className="text-3xl font-bold">Información Médica</h3>
+            <h3 className="text-2xl md:text-3xl font-bold">
+              Información Médica
+            </h3>
             <div className="flex flex-col gap-6">
-              <div className="flex gap-10">
+              <div className="flex flex-col md:flex-row gap-10">
                 <div className="flex flex-col gap-6 w-full">
                   <CustomFormField
                     control={form.control}
@@ -245,7 +249,7 @@ export function UserDataForm({ user }: { user: User }) {
 
           {/* NOTE Seccion de Identificacion y Verificacion */}
           <section className="flex flex-col gap-4">
-            <h3 className="text-3xl font-bold">
+            <h3 className="text-2xl md:text-3xl font-bold">
               Identificación y Verificación
             </h3>
             <div className="flex flex-col gap-6">
@@ -290,7 +294,7 @@ export function UserDataForm({ user }: { user: User }) {
 
           {/* NOTE Seccion de Consentimiento y Politicas de Privacidad */}
           <section className="flex flex-col gap-4">
-            <h3 className="text-3xl font-bold">
+            <h3 className="text-2xl md:text-3xl font-bold">
               Consentimiento y Políticas de Privacidad
             </h3>
             <CustomFormField

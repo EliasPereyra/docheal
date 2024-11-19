@@ -17,6 +17,7 @@ import {
 } from "./ui/alert-dialog";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "./ui/input-otp";
 import { decryptKey, encryptKey } from "@/lib/utils";
+import Loader from "./loaders";
 
 export default function KeyPassModal() {
   const path = usePathname();
@@ -24,6 +25,7 @@ export default function KeyPassModal() {
   const [open, setOpen] = useState(false);
   const [passkey, setPasskey] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const encryptedKey =
     typeof window !== "undefined"
@@ -32,12 +34,11 @@ export default function KeyPassModal() {
 
   useEffect(() => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
-    console.log(process.env.NEXT_PUBLIC_ADMIN_PASSKEY?.toString());
 
     if (path) {
-      // Si tengo la clave de acceso, me redirige directo a la pagina admin, sino abre el dialog.
       if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
         setOpen(false);
+        setIsLoading(true);
         router.push("/admin");
       } else {
         setOpen(true);
@@ -50,9 +51,7 @@ export default function KeyPassModal() {
   ) => {
     e.preventDefault();
 
-    // Verifico si el passkey es igual al de la variable de entorno.
     if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
-      // Guardo el passkey en el localStorage.
       const encryptedKey = encryptKey(passkey);
       localStorage.setItem("passkey", encryptedKey);
 
@@ -65,6 +64,8 @@ export default function KeyPassModal() {
   const closeModal = () => {
     setOpen(false);
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>

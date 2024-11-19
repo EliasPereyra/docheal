@@ -10,12 +10,14 @@ export default async function Appointment({
   const patient = await getPatient(userId);
 
   return (
-    <div className="bg-[#080A10] flex space-between items-center gap-10 min-h-screen">
-      <div className="absolute left-20 top-10 h-96 w-96 blur-[150px] opacity-35 bg-[#2B3457] z-0"></div>
-      <section className="flex flex-col gap-10 justify-center px-20 w-full z-10">
+    <div className="bg-[#080A10] flex md:space-between items-start md:items-center gap-10 md:min-h-screen">
+      <div className="absolute left-20 top-10 w-20 h-20 md:h-96 md:w-96 blur-[150px] opacity-35 bg-[#2B3457] z-0"></div>
+      <section className="flex flex-col gap-10 justify-center px-10 py-10 md:px-20 w-full z-10">
         <div className="flex flex-col gap-2">
           <Logo />
-          <h2 className="text-5xl font-bold">Solicita un turno</h2>
+          <h2 className="text-4xl text-balance md:text-5xl font-bold">
+            Solicita un turno
+          </h2>
           <p className="text-slate-400">
             Puedes solicitar un turno para la fecha y hora que desees.
           </p>

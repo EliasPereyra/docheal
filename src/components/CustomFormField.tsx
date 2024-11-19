@@ -50,15 +50,15 @@ export function InputType({
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div>
-          <FormControl>
+        <FormControl>
+          <div className="flex gap-2">
             <Input
               className="bg-[#181D30] border-[#2C3558]"
               placeholder={props.placeholder}
               {...field}
             />
-          </FormControl>
-        </div>
+          </div>
+        </FormControl>
       );
     case FormFieldType.TEXTAREA:
       return (
