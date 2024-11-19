@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Logo from "@/components/logo";
 
 export default function Success() {
   const userId = useParams().userId as string;
@@ -11,15 +12,7 @@ export default function Success() {
     <div className="bg-gradient-to-b from-[#070A15] to-[#080A10] h-screen flex flex-col gap-10 items-center py-32">
       <div className="absolute left-16 top-10 h-96 w-96 blur-[150px] opacity-45 bg-[#2B3457]"></div>
       <div className="absolute right-16 top-10 h-96 w-96 blur-[200px] opacity-45 bg-[#4B2B57]"></div>
-      <Link href="/">
-        <Image
-          src="/assets/docheal-logo.png"
-          alt="Logo oficial de la página"
-          width={256}
-          height={212}
-          className="w-24 mb-6"
-        />
-      </Link>
+      <Logo />
       <div className="text-center w-[70ch]">
         <Image
           src="/assets/icons/ep_success-filled.svg"

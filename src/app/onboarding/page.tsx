@@ -28,11 +28,13 @@ export default function Onboarding({ searchParams }: SearchParamProps) {
             Comencemos con cargar ciertos datos fundamentales.
           </p>
         </div>
-        {/* El registro o inicio de sesion */}
         <RegisterForm />
-        <div>
-          <Link href="/onboarding?admin=true">Admin</Link>
-        </div>
+        <Link
+          href="/onboarding?admin=true"
+          className="text-[#0C8EAF] transition-colors hover:underline"
+        >
+          Admin
+        </Link>
       </div>
     </section>
   );
