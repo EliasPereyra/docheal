@@ -102,7 +102,7 @@
   }
 
   .shad-table {
-    @apply rounded-lg overflow-hidden !important;
+    @apply overflow-auto md:overflow-hidden rounded-lg !important;
   }
 }
 
