@@ -42,7 +42,7 @@ export function RegisterForm() {
       const user = {
         fullname: values.fullname,
         email: values.email,
-        phone: values.phone,
+        phoneNumber: values.phone,
       };
 
       const newUser = await createUser(user);
