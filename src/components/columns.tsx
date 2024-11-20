@@ -1,10 +1,10 @@
 "use client";
 
-import { Appointment } from "@/types/appwrite.types";
 import { ColumnDef } from "@tanstack/react-table";
 import AppointmentModal from "./appointmentModal";
 import State from "./state";
 import { formatDate } from "@/lib/utils";
+import { Appointment } from "@/types/appwrite.types";
 
 export const columns: ColumnDef<Appointment>[] = [
   {
@@ -33,7 +33,7 @@ export const columns: ColumnDef<Appointment>[] = [
     header: "Fecha",
     cell: ({ row }) => {
       const appointment = row.original;
-      return <p>{formatDate(appointment.appointmentDate)}</p>;
+      return <p>{formatDate(appointment.appointmentDate).dateTime}</p>;
     },
   },
   {

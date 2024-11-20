@@ -56,6 +56,22 @@ export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
  * @param date
  * @returns
  */
-export const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat("es", {}).format(date);
+export const formatDate = (date: Date | string) => {
+  const dateTimeOptions: Intl.DateTimeFormatOptions = {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  const formatDateTime = new Date(date).toLocaleDateString(
+    "es-AR",
+    dateTimeOptions
+  );
+
+  return {
+    dateTime: formatDateTime,
+  };
 };
