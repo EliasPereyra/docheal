@@ -2,7 +2,7 @@
 <h1>DocHeal</h1>
 <br />
   <a href="" target="_blank">
-    <img src="./public/assets/repo-header.png" alt="Banner de la página para el repositorio.">
+    <img src="https://github.com/EliasPereyra/docheal/blob/main/public/assets/repo-header.png" alt="Banner de la página para el repositorio.">
   </a>
 </div>
 
