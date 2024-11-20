@@ -9,7 +9,7 @@ export const patientFormDefaultValues = {
   gender: undefined,
   address: "",
   profession: "",
-  civilStatus: "Single",
+  civilStatus: undefined,
   phoneNumberAlt: "",
   healthInsuranceNumber: "",
   allergies: "",
