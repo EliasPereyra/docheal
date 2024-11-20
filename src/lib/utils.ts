@@ -56,6 +56,6 @@ export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
  * @param date
  * @returns
  */
-export const formatDate = ({ date }: { date: Date }) => {
+export const formatDate = (date: Date) => {
   return new Intl.DateTimeFormat("es", {}).format(date);
 };
