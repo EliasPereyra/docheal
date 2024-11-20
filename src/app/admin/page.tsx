@@ -14,7 +14,7 @@ export default async function AdminPage() {
       <main className="flex flex-col gap-16 items-center p-10 md:p-16">
         <div className="flex flex-col gap-2 items-start w-full">
           <h2 className="text-4xl text-center md:text-left text-balance md:text-5xl font-bold">
-            Bienvenido <span className="text-[#28C6EF]">John Doe!</span>
+            Bienvenido
           </h2>
           <p className="text-center md:text-left text-slate-400">
             En esta sección puedes ver todos los turnos de cada paciente y
