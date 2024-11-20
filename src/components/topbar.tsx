@@ -1,9 +1,16 @@
+import Image from "next/image";
+import Logo from "./logo";
+
 export default function Topbar() {
   return (
-    <nav className="bg-[#0E111C] flex justify-between px-20 py-4 w-full">
-      {/* TODO: Tiene dos elements: logo y sesion del usuario */}
-      <h3 className="text-slate-300 font-bold">DocHeal</h3>
-      <div className="bg-slate-400 p-2 rounded-full"></div>
+    <nav className="bg-[#0E111C] flex items-center justify-between px-20 py-4 w-full md:px-20 md:py-2">
+      <Logo w={20} />
+      <Image
+        src="/assets/icons/user-circle.svg"
+        alt="Icono de usuario"
+        width={30}
+        height={30}
+      />
     </nav>
   );
 }
