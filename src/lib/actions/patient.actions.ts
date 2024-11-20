@@ -24,7 +24,7 @@ export const createUser = async (user: CreateUserParams) => {
     const newUser = await users.create(
       ID.unique(),
       user.email,
-      user.phone,
+      user.phoneNumber,
       undefined,
       user.fullname
     );
@@ -33,7 +33,7 @@ export const createUser = async (user: CreateUserParams) => {
   } catch (err) {
     // We need to check if there's already a user with these data. For that, we need to check the error
     // status code 409, which is when there's a conflict
-    if (err && err.code === 409) {
+    if (err && err === 409) {
       const existingUser = await users.list([Query.equal("email", user.email)]);
 
       return existingUser.users[0];
