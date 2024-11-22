@@ -6,6 +6,11 @@
     "name": "EliasPereyra",
     "url": "https://github.com/EliasPereyra"
   },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EliasPereyra/docheal/issues"
+  },
+  "readme": "https://github.com/EliasPereyra/docheal/blob/main/README.md",
   "keywords": [
     "nextjs",
     "tailwindcss",
