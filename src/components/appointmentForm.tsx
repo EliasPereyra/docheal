@@ -130,6 +130,7 @@ export default function AppointmentForm({
                 label="Razón de la consulta"
                 placeholder="Ejemplo: Dolor de cabeza"
                 fieldType={FormFieldType.TEXTAREA}
+                disabled={type === "confirmar"}
               />
 
               <CustomFormField
@@ -138,6 +139,7 @@ export default function AppointmentForm({
                 label="Comentarios/Notas adicionales"
                 placeholder="Ejemplo: Tuve un dolor de cabeza desde ayer."
                 fieldType={FormFieldType.TEXTAREA}
+                disabled={type === "confirmar"}
               />
 
               <CustomFormField
@@ -145,6 +147,7 @@ export default function AppointmentForm({
                 name="appointmentDate"
                 label="Fecha para el Turno"
                 fieldType={FormFieldType.DATE_PICKER}
+                disabled={type === "confirmar"}
               />
             </>
           )}

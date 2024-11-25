@@ -38,6 +38,7 @@ type CustomFormFieldProps = {
   borderTransparent?: boolean;
   renderSkeleton?: (field: any) => React.ReactNode;
   children?: React.ReactNode;
+  disabled?: boolean;
 };
 
 export function InputType({
@@ -56,6 +57,7 @@ export function InputType({
               className="bg-[#181D30] border-[#2C3558]"
               placeholder={props.placeholder}
               {...field}
+              disabled={props.disabled}
             />
           </div>
         </FormControl>
@@ -67,6 +69,7 @@ export function InputType({
             placeholder={props.placeholder}
             {...field}
             className="bg-[#181D30] border-[#2C3558]"
+            disabled={props.disabled}
           />
         </FormControl>
       );
