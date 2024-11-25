@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function State({ text }: { text: string }) {
+export default function stateBadge({ text }: { text: string }) {
   switch (text) {
     case "pendiente":
       return (

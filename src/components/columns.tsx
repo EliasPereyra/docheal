@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import AppointmentModal from "./appointmentModal";
-import State from "./state";
+import StateBage from "./stateBadge";
 import { formatDate } from "@/lib/utils";
 import { Appointment } from "@/types/appwrite.types";
 
@@ -41,7 +41,7 @@ export const columns: ColumnDef<Appointment>[] = [
     header: "Estado",
     cell: ({ row }) => {
       const appointment = row.original;
-      return <State text={appointment.status} />;
+      return <StateBage text={appointment.status} />;
     },
   },
   {
