@@ -96,7 +96,11 @@ export default function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       <div className="flex justify-between border-[#2C3558]">
-        <Button className="rounded-none bg-transparent">
+        <Button
+          className="rounded-none bg-transparent"
+          disabled={!table.getCanPreviousPage()}
+          onClick={() => table.previousPage()}
+        >
           <Image
             src={"/assets/icons/left-arrow-circle.svg"}
             alt="Icono con una flecha apuntando a la izquierda"
@@ -104,7 +108,11 @@ export default function DataTable<TData, TValue>({
             height={30}
           />
         </Button>
-        <Button className="rounded-none bg-transparent">
+        <Button
+          className="rounded-none bg-transparent"
+          disabled={!table.getCanNextPage()}
+          onClick={() => table.nextPage()}
+        >
           <Image
             src={"/assets/icons/right-arrow-circle.svg"}
             alt="Icono con una flecha apuntando a la derecha"
