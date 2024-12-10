@@ -17,7 +17,12 @@ import { Label } from "./ui/label";
 
 import { PatientFormSchemaValidation } from "@/lib/validation";
 import { registerPatient } from "@/lib/actions/patient.actions";
-import { Gender, IDTypes, patientFormDefaultValues } from "@/constants";
+import {
+  civilStatus,
+  Gender,
+  IDTypes,
+  patientFormDefaultValues,
+} from "@/constants";
 
 export function UserDataForm({ user }: { user: User }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -112,13 +117,22 @@ export function UserDataForm({ user }: { user: User }) {
                   fieldType={FormFieldType.INPUT}
                 />
 
-                {/* FIXME: Cambiar a estado civil */}
                 <CustomFormField
                   control={form.control}
-                  name=""
-                  label="Localidad"
-                  fieldType={FormFieldType.INPUT}
-                />
+                  name="civilStatus"
+                  label="Estado Civil"
+                  fieldType={FormFieldType.SELECT}
+                >
+                  {civilStatus.map((option) => (
+                    <SelectItem
+                      key={option}
+                      value={option}
+                      className="capitalize"
+                    >
+                      {option}
+                    </SelectItem>
+                  ))}
+                </CustomFormField>
 
                 <CustomFormField
                   control={form.control}
@@ -136,7 +150,6 @@ export function UserDataForm({ user }: { user: User }) {
               </div>
 
               <div className="flex flex-col gap-6 w-full">
-                {/* TODO: improve the styling */}
                 <CustomFormField
                   control={form.control}
                   name="phoneNumber"
@@ -260,7 +273,7 @@ export function UserDataForm({ user }: { user: User }) {
                   label="Tipo de Identificación"
                   fieldType={FormFieldType.SELECT}
                 >
-                  {IDTypes.map((option, i) => (
+                  {IDTypes.map((option) => (
                     <SelectItem key={option} value={option}>
                       {option}
                     </SelectItem>
@@ -326,7 +339,7 @@ export function UserDataForm({ user }: { user: User }) {
           </section>
 
           <Button disabled={isLoading} className="bg-[#0C8EAF]" type="submit">
-            {isLoading ? "Cargando..." : "Enviar"}
+            {isLoading ? "Cargando..." : "Guardar"}
           </Button>
         </form>
       </Form>
