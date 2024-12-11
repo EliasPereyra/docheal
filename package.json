@@ -1,6 +1,6 @@
 {
   "name": "docheal",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "private": true,
   "author": {
     "name": "EliasPereyra",
@@ -20,8 +20,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

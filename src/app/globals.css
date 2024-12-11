@@ -141,8 +141,8 @@
 
 .react-datepicker__input-container input {
   background-color: #181d30 !important;
-  width: 100%;
   outline: none;
+  margin-left: 0.8rem;
 }
 
 .react-datepicker__day--selected {
@@ -162,6 +162,24 @@
 .react-datepicker__time-list-item {
   display: flex !important;
   align-items: center !important;
+}
+
+.react-datepicker__month-dropdown-container--select {
+  padding: 0.5rem !important;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+  padding: 0.5rem !important;
+  background-color: #181d30 !important;
+  border: 1px solid #363a3d !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+  outline: none !important;
+}
+
+.react-datepicker__calendar-icon {
+  fill: #ffffff !important;
 }
 
 .PhoneInputInput {

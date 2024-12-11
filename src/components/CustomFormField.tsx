@@ -113,12 +113,17 @@ export function InputType({
         <FormControl>
           <div className="bg-[#181D30] border border-[#2C3558] rounded-sm">
             <ReactDatePicker
+              showIcon
               selected={field.value}
               showTimeSelect={props.showTimeSelect ?? false}
               onChange={(date) => field.onChange(date)}
               dateFormat="dd/MM/yyyy"
               timeInputLabel="Hora:"
               wrapperClassName="date-picker"
+              peekNextMonth
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
             />
           </div>
         </FormControl>
