@@ -9,7 +9,7 @@ export default function Success() {
   const userId = useParams().userId as string;
 
   return (
-    <div className="bg-gradient-to-b from-[#070A15] to-[#080A10] h-screen flex flex-col gap-10 items-center py-32">
+    <div className="bg-gradient-to-b from-[#070A15] to-[#080A10] h-screen flex flex-col gap-10 items-center mx-auto py-32">
       <div className="absolute left-16 top-10 w-20 h-20 md:h-96 md:w-96 blur-[150px] opacity-45 bg-[#2B3457]"></div>
       <div className="absolute right-16 top-10 w-20 h-20 md:h-96 md:w-96 blur-[200px] opacity-45 bg-[#4B2B57]"></div>
       <Logo />
