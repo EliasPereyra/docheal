@@ -11,9 +11,10 @@ import {
 } from "../appwrite.config";
 
 import { parseStringify, stringifyValue } from "../utils";
+import { redirect } from "next/navigation";
 
 /**
- * Create an appwrite user
+ * Create an appwrite user, or redirect to register if the user already exists
  *
  * @param user: CreateUserParams
  * @returns User
@@ -33,10 +34,11 @@ export const createUser = async (user: CreateUserParams) => {
   } catch (err) {
     // We need to check if there's already a user with these data. For that, we need to check the error
     // status code 409, which is when there's a conflict
-    if (err && err === 409) {
-      const existingUser = await users.list([Query.equal("email", user.email)]);
-
-      return existingUser.users[0];
+    if (err && err.code === 409) {
+      const existingUser = await users.list([
+        Query.equal("email", [user.email]),
+      ]);
+      redirect(`/patients/${existingUser.users[0].$id}/register`);
     }
 
     console.error("There was an error when creating the user: ", err);
