@@ -18,7 +18,7 @@ import { redirect } from "next/navigation";
  *
  * @param user: CreateUserParams
  * @returns User
- * @throws: Error when creating the user
+ * @throws: Error when creating the user, or when there's already a user
  */
 export const createUser = async (user: CreateUserParams) => {
   try {
@@ -34,6 +34,7 @@ export const createUser = async (user: CreateUserParams) => {
   } catch (err) {
     // We need to check if there's already a user with these data. For that, we need to check the error
     // status code 409, which is when there's a conflict
+    // @ts-ignore
     if (err && err.code === 409) {
       const existingUser = await users.list([
         Query.equal("email", [user.email]),
