@@ -7,13 +7,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
-import CustomFormField, { FormFieldType } from "./CustomFormField";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { Form, FormControl } from "./ui/form";
-import { Button } from "./ui/button";
-import { FileUploader } from "./fileUploader";
-import { SelectItem } from "./ui/select";
-import { Label } from "./ui/label";
+import CustomFormField, { FormFieldType } from "./FormFields/CustomFormField";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Form, FormControl } from "../ui/form";
+import { Button } from "../ui/button";
+import { FileUploader } from "../fileUploader";
+import { SelectItem } from "../ui/select";
+import { Label } from "../ui/label";
 
 import { PatientFormSchemaValidation } from "@/lib/validation";
 import { registerPatient } from "@/lib/actions/patient.actions";
@@ -52,9 +52,9 @@ export function UserDataForm({ user }: { user: User }) {
     try {
       const patient = {
         userId: user.$id,
-        fullname: values.fullName,
-        email: values.email,
-        phoneNumber: values.phoneNumber,
+        fullname: user.fullname,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
         birthDate: new Date(values.birthDate),
         gender: values.gender,
         address: values.address,
@@ -103,21 +103,26 @@ export function UserDataForm({ user }: { user: User }) {
           {/* NOTE: Seccion de informacion personal */}
           <section className="flex flex-col gap-4">
             <CustomFormField
+              id="fullname"
               control={form.control}
               name="fullName"
               label="Nombre Completo"
+              disabled
               fieldType={FormFieldType.INPUT}
             />
             <div className="flex flex-col md:flex-row gap-10">
               <div className="flex flex-col gap-6 w-full">
                 <CustomFormField
+                  id="email"
                   control={form.control}
                   name="email"
                   label="Email"
+                  disabled
                   fieldType={FormFieldType.INPUT}
                 />
 
                 <CustomFormField
+                  id="civilStatus"
                   control={form.control}
                   name="civilStatus"
                   label="Estado Civil"
@@ -125,23 +130,25 @@ export function UserDataForm({ user }: { user: User }) {
                 >
                   {civilStatus.map((option) => (
                     <SelectItem
-                      key={option}
-                      value={option}
+                      key={option.value}
+                      value={option.value}
                       className="capitalize"
                     >
-                      {option}
+                      {option.name}
                     </SelectItem>
                   ))}
                 </CustomFormField>
 
                 <CustomFormField
                   control={form.control}
+                  id="address"
                   name="address"
                   label="Dirección"
                   fieldType={FormFieldType.INPUT}
                 />
 
                 <CustomFormField
+                  id="birthDate"
                   control={form.control}
                   name="birthDate"
                   label="Fecha de Nacimiento"
@@ -151,15 +158,19 @@ export function UserDataForm({ user }: { user: User }) {
 
               <div className="flex flex-col gap-6 w-full">
                 <CustomFormField
+                  id="phoneNumber"
                   control={form.control}
                   name="phoneNumber"
                   label="Número de Teléfono"
+                  maxLength={15}
+                  disabled
                   fieldType={FormFieldType.PHONE_INPUT}
                 />
 
                 <div className="flex flex-col gap-2">
                   <label>Género</label>
                   <CustomFormField
+                    id="gender"
                     control={form.control}
                     label=""
                     fieldType={FormFieldType.SKELETON}
@@ -167,7 +178,7 @@ export function UserDataForm({ user }: { user: User }) {
                     renderSkeleton={(field) => (
                       <FormControl>
                         <RadioGroup
-                          className="flex gap-4 h-10"
+                          className="flex justify-between gap-4 h-10"
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
@@ -191,13 +202,16 @@ export function UserDataForm({ user }: { user: User }) {
                 </div>
 
                 <CustomFormField
+                  id="profession"
                   control={form.control}
                   name="profession"
                   label="Ocupación"
+                  maxLength={50}
                   fieldType={FormFieldType.INPUT}
                 />
 
                 <CustomFormField
+                  id="phoneNumberAlt"
                   name="phoneNumberAlt"
                   control={form.control}
                   label="Número de Teléfono Auxiliar"
@@ -208,7 +222,7 @@ export function UserDataForm({ user }: { user: User }) {
           </section>
 
           {/* NOTE Seccion de informacion medica */}
-          <section className="flex flex-col gap-4">
+          <section className="flex flex-col gap-4 mt-10">
             <h3 className="text-2xl md:text-3xl font-bold">
               Información Médica
             </h3>
@@ -216,12 +230,14 @@ export function UserDataForm({ user }: { user: User }) {
               <div className="flex flex-col md:flex-row gap-10">
                 <div className="flex flex-col gap-6 w-full">
                   <CustomFormField
+                    id="healthInsuranceProvider"
                     control={form.control}
                     name=""
                     label="Proveedor de Seguros"
                     fieldType={FormFieldType.INPUT}
                   />
                   <CustomFormField
+                    id="allergies"
                     label="Alergias (si tiene)"
                     control={form.control}
                     name="allergies"
@@ -229,6 +245,7 @@ export function UserDataForm({ user }: { user: User }) {
                   />
 
                   <CustomFormField
+                    id="familyMedicalHistory"
                     label="Historial Médico Familiar"
                     control={form.control}
                     name="familyMedicalHistory"
@@ -238,18 +255,21 @@ export function UserDataForm({ user }: { user: User }) {
 
                 <div className="flex flex-col gap-6 w-full">
                   <CustomFormField
+                    id="healthInsuranceNumber"
                     control={form.control}
                     name="healthInsuranceNumber"
                     label="Número de Polizas de Seguro"
                     fieldType={FormFieldType.INPUT}
                   />
                   <CustomFormField
+                    id="currentMedicines"
                     label="Medicaciones actuales"
                     control={form.control}
                     name="currentMedicines"
                     fieldType={FormFieldType.TEXTAREA}
                   />
                   <CustomFormField
+                    id="pastFamilyMedicalHistory"
                     label="Historial Médico Anterior"
                     control={form.control}
                     name="pastFamilyMedicalHistory"
@@ -261,13 +281,14 @@ export function UserDataForm({ user }: { user: User }) {
           </section>
 
           {/* NOTE Seccion de Identificacion y Verificacion */}
-          <section className="flex flex-col gap-4">
+          <section className="flex flex-col gap-4 mt-10">
             <h3 className="text-2xl md:text-3xl font-bold">
               Identificación y Verificación
             </h3>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-6 w-full">
                 <CustomFormField
+                  id="identificationType"
                   control={form.control}
                   name="idType"
                   label="Tipo de Identificación"
@@ -281,13 +302,16 @@ export function UserDataForm({ user }: { user: User }) {
                 </CustomFormField>
 
                 <CustomFormField
+                  id="identificationNumber"
                   control={form.control}
                   name="idNumber"
                   label="Número de Identificación"
+                  maxLength={15}
                   fieldType={FormFieldType.INPUT}
                 />
 
                 <CustomFormField
+                  id="idPhotoUrl"
                   control={form.control}
                   name="idPhotoUrl"
                   label="Sube tu Foto de Identificación"
@@ -295,6 +319,7 @@ export function UserDataForm({ user }: { user: User }) {
                   renderSkeleton={(field) => (
                     <FormControl>
                       <FileUploader
+                        id="file"
                         files={field.value}
                         onChange={field.onChange}
                       />
@@ -306,11 +331,12 @@ export function UserDataForm({ user }: { user: User }) {
           </section>
 
           {/* NOTE Seccion de Consentimiento y Politicas de Privacidad */}
-          <section className="flex flex-col gap-4">
+          <section className="flex flex-col gap-4 mt-10">
             <h3 className="text-2xl md:text-3xl font-bold">
               Consentimiento y Políticas de Privacidad
             </h3>
             <CustomFormField
+              id="treatmentConsent"
               label="Consiento en recibir tratamiento para mi condición de salud"
               control={form.control}
               name="treatmentConsent"
@@ -319,6 +345,7 @@ export function UserDataForm({ user }: { user: User }) {
               borderTransparent={true}
             />
             <CustomFormField
+              id="disclosureConsent"
               label="Consiento al uso y exposición de mis datos médicos por razones
                 de tratamiento"
               control={form.control}
@@ -328,6 +355,7 @@ export function UserDataForm({ user }: { user: User }) {
               borderTransparent={true}
             />
             <CustomFormField
+              id="privacyConsent"
               label="Reconozco que he revisado y acuerdo a las políticas de
                 privacidad"
               control={form.control}

@@ -7,10 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 
-import { Form } from "./ui/form";
-import { createUser, getUser } from "@/lib/actions/patient.actions";
-import { SubmitButton } from "./submitButton";
-import CustomFormField, { FormFieldType } from "./CustomFormField";
+import { Form } from "../ui/form";
+import { createUser } from "@/lib/actions/patient.actions";
+import { SubmitButton } from "../submitButton";
+import CustomFormField, { FormFieldType } from "./FormFields/CustomFormField";
 import { PatientRegistrationSchemaValidation } from "@/lib/validation";
 import { patientFormDefaultValues } from "@/constants/index";
 
@@ -36,7 +36,6 @@ export function RegisterForm() {
     values: z.infer<typeof PatientRegistrationSchemaValidation>
   ) => {
     setIsLoading(true);
-    console.log(values);
 
     try {
       const user = {
@@ -46,13 +45,15 @@ export function RegisterForm() {
       };
 
       const newUser = await createUser(user);
-      if (await getUser(newUser.$id)) {
-        setIsLoading(false);
-        router.push(`/patients/${newUser.$id}/register`);
+
+      if (!newUser) {
+        toast.info(
+          "El usuario ya existe. Redirecionando al formulario de registro."
+        );
       }
 
       if (newUser) {
-        toast.success("Usuario creado exitosamente");
+        toast.success("Redirigiendo al formulario de registro");
         router.push(`/patients/${newUser.$id}/register`);
       }
     } catch (error) {
@@ -69,6 +70,7 @@ export function RegisterForm() {
         className="flex flex-col gap-4"
       >
         <Toaster position="top-right" />
+
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           label="Nombre Completo"
@@ -84,7 +86,6 @@ export function RegisterForm() {
           name="email"
           placeholder="juanperez@hotmail.com"
         />
-
         <CustomFormField
           fieldType={FormFieldType.PHONE_INPUT}
           label="Número de Teléfono"
@@ -93,7 +94,10 @@ export function RegisterForm() {
           placeholder="54 9 1234 5678"
         />
 
-        <SubmitButton isLoading={isLoading} className="bg-[#0C8EAF]">
+        <SubmitButton
+          isLoading={isLoading}
+          className="bg-[#0C8EAF] hover:bg-[#49b3ce] transition-colors "
+        >
           Comencemos
         </SubmitButton>
       </form>

@@ -11,7 +11,7 @@ import {
 } from "./ui/dialog";
 
 import "react-datepicker/dist/react-datepicker.css";
-import AppointmentForm from "./appointmentForm";
+import AppointmentForm from "./CustomForms/appointmentForm";
 import { Appointment } from "@/types/appwrite.types";
 
 export default function AppointmentModal({

@@ -3,13 +3,13 @@
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
-import { Form } from "./ui/form";
+import { Form } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
-import CustomFormField, { FormFieldType } from "./CustomFormField";
-import { Button } from "./ui/button";
+import CustomFormField, { FormFieldType } from "./FormFields/CustomFormField";
+import { Button } from "../ui/button";
 import { getAppointmentSchema } from "@/lib/validation";
 import {
   createAppointment,

@@ -10,12 +10,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+} from "../../ui/form";
+import { Input } from "../../ui/input";
+import { Textarea } from "../../ui/textarea";
 import PhoneInput from "react-phone-number-input";
-import { Checkbox } from "./ui/checkbox";
-import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import { Checkbox } from "../../ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "../../ui/select";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -28,6 +33,7 @@ export enum FormFieldType {
 }
 
 type CustomFormFieldProps = {
+  id: string;
   control: Control<any>;
   name: string;
   label: string;
@@ -39,6 +45,8 @@ type CustomFormFieldProps = {
   renderSkeleton?: (field: any) => React.ReactNode;
   children?: React.ReactNode;
   disabled?: boolean;
+  value?: string;
+  maxLength?: number;
 };
 
 export function InputType({
@@ -54,10 +62,12 @@ export function InputType({
         <FormControl>
           <div className="flex gap-2">
             <Input
+              id={props.id}
               className="bg-[#181D30] border-[#2C3558]"
               placeholder={props.placeholder}
-              {...field}
               disabled={props.disabled}
+              maxLength={props.maxLength}
+              {...field}
             />
           </div>
         </FormControl>
@@ -66,6 +76,7 @@ export function InputType({
       return (
         <FormControl>
           <Textarea
+            id={props.id}
             placeholder={props.placeholder}
             {...field}
             className="bg-[#181D30] border-[#2C3558]"
@@ -77,6 +88,7 @@ export function InputType({
       return (
         <FormControl>
           <PhoneInput
+            id={props.id}
             placeholder={props.placeholder}
             value={field.value}
             defaultCountry="AR"
@@ -84,6 +96,8 @@ export function InputType({
             international
             onChange={field.onChange}
             className="input-phone"
+            disabled={props.disabled}
+            limitMaxLength
           />
         </FormControl>
       );
@@ -92,15 +106,15 @@ export function InputType({
         <FormControl>
           <div
             className={`flex gap-4 items-center ${
-              props.bgTransparent ? "bg-transparent" : "bg-[#181D30]"
+              props.bgTransparent ? "bg-transparent" : "bg-[#2e375c]"
             } border ${
               props.borderTransparent
                 ? "border-transparent"
                 : "border-[#2C3558]"
-            } px-5 py-2 rounded-sm`}
+            } px-5 py-2 checked:bg-[#2e375c] checked:border-[#2C3558]`}
           >
             <Checkbox
-              id={props.name}
+              id={props.id}
               checked={field.value}
               onCheckedChange={field.onChange}
             />
@@ -113,6 +127,7 @@ export function InputType({
         <FormControl>
           <div className="bg-[#181D30] border border-[#2C3558] rounded-sm">
             <ReactDatePicker
+              id={props.id}
               showIcon
               selected={field.value}
               showTimeSelect={props.showTimeSelect ?? false}
