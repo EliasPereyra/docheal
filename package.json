@@ -1,11 +1,12 @@
 {
   "name": "docheal",
-  "version": "0.3.22",
+  "version": "0.3.23",
   "private": true,
   "author": {
     "name": "EliasPereyra",
     "url": "https://github.com/EliasPereyra"
   },
+  "type": "module",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EliasPereyra/docheal/issues"

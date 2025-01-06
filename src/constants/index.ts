@@ -26,4 +26,21 @@ export const patientFormDefaultValues = {
 
 export const IDTypes = ["DNI", "Carnet de Extranjería", "Pasaporte"];
 
-export const civilStatus = ["Single", "Married", "Divorced", "Widow"];
+export const civilStatus = [
+  {
+    name: "Soltero/a",
+    value: "Single",
+  },
+  {
+    name: "Casado/a",
+    value: "Married",
+  },
+  {
+    name: "Divorciado/a",
+    value: "Divorced",
+  },
+  {
+    name: "Viudo/a",
+    value: "Widow",
+  },
+];
