@@ -1,4 +1,4 @@
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "../../ui/textarea";
 
 export function TextAreaField({ labelText }: { labelText: string }) {
   return (
