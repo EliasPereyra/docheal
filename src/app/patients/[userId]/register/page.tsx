@@ -18,7 +18,6 @@ export default async function PatientForm({
   const patient = await getPatient(userId);
 
   if (patient) {
-    toast.info("Redirigiendo al formulario de turnos");
     redirect(`/patients/${userId}/create-appointment`);
   }
 
@@ -27,22 +26,22 @@ export default async function PatientForm({
       <div className="p-8 md:p-20 flex flex-col gap-10 w-full">
         {/* NOTE Sección del texto principal  */}
         <div className="flex flex-col gap-2">
-          <Logo />
-          <h2 className="text-4xl md:text-5xl font-bold">Bienvenido!</h2>
-          <p>
+          <Logo w={100} h={100} className="mb-4" />
+          <h2 className="text-4xl md:text-5xl font-bold">¡Bienvenido!</h2>
+          <p className="text-slate-300">
             En esta sección necesitas agregar todos tus datos personales y
-            médicos.
+            médicos
           </p>
         </div>
         <UserDataForm user={user} />
       </div>
       <div className="">
         <Image
-          src="/assets/imgs/doc-bg.jpg"
+          src="/assets/figure.png"
           alt="Imagen de instrumentos de escritorio"
-          width="660"
-          height="924"
-          className="sticky top-0 right-0 object-cover w-full"
+          width="329"
+          height="1232"
+          className=" top-0 right-0 object-cover"
         />
       </div>
     </section>
