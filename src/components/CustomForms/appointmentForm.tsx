@@ -116,6 +116,7 @@ export default function AppointmentForm({
         >
           {type === "cancelar" ? (
             <CustomFormField
+              id="cancellationReason"
               name="cancellationReason"
               control={form.control}
               label="Razón para cancelar el turno"
@@ -125,6 +126,7 @@ export default function AppointmentForm({
           ) : (
             <>
               <CustomFormField
+                id="reason"
                 control={form.control}
                 name="reason"
                 label="Razón de la consulta"
@@ -134,6 +136,7 @@ export default function AppointmentForm({
               />
 
               <CustomFormField
+                id="additionalNotes"
                 control={form.control}
                 name="additionalNotes"
                 label="Comentarios/Notas adicionales"
@@ -143,6 +146,7 @@ export default function AppointmentForm({
               />
 
               <CustomFormField
+                id="appointmentDate"
                 control={form.control}
                 name="appointmentDate"
                 label="Fecha para el Turno"
@@ -154,7 +158,9 @@ export default function AppointmentForm({
 
           <Button
             disabled={isLoading}
-            className={`${type === "cancelar" && "bg-[#FF6C6C]"} bg-[#0C8EAF]`}
+            className={`${
+              type === "cancelar" && "bg-[#FF6C6C]"
+            } bg-[#0C8EAF] hover:bg-[#63a3b3]`}
             type="submit"
           >
             {isLoading

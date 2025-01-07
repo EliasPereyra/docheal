@@ -46,11 +46,10 @@ export function RegisterForm() {
 
       const newUser = await createUser(user);
 
-      if (!newUser) {
+      if (!newUser)
         toast.info(
           "El usuario ya existe. Redirecionando al formulario de registro."
         );
-      }
 
       if (newUser) {
         toast.success("Redirigiendo al formulario de registro");
@@ -72,6 +71,7 @@ export function RegisterForm() {
         <Toaster position="top-right" />
 
         <CustomFormField
+          id="fullname"
           fieldType={FormFieldType.INPUT}
           label="Nombre Completo"
           control={form.control}
@@ -80,6 +80,7 @@ export function RegisterForm() {
         />
 
         <CustomFormField
+          id="email"
           fieldType={FormFieldType.INPUT}
           label="Email"
           control={form.control}
@@ -87,6 +88,7 @@ export function RegisterForm() {
           placeholder="juanperez@hotmail.com"
         />
         <CustomFormField
+          id="phone"
           fieldType={FormFieldType.PHONE_INPUT}
           label="Número de Teléfono"
           name="phone"

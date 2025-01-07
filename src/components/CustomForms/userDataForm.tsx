@@ -178,13 +178,13 @@ export function UserDataForm({ user }: { user: User }) {
                     renderSkeleton={(field) => (
                       <FormControl>
                         <RadioGroup
-                          className="flex justify-between gap-4 h-10"
+                          className="flex justify-between gap-6 h-10"
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           {Gender.map((option, i) => (
                             <div
-                              className="flex gap-2 items-center bg-[#181D30] border border-[#2C3558] border-dashed rounded-md px-4"
+                              className="flex gap-2 items-center bg-[#181D30] border border-[#2C3558] border-dashed rounded-md px-10"
                               key={option}
                             >
                               <RadioGroupItem
