@@ -84,15 +84,13 @@ export default function KeyPassModal() {
               />
             </Link>
           </AlertDialogTitle>
-          <AlertDialogDescription>
-            Por favor verifica tu OTP que enviamos a tu número de teléfono.
-          </AlertDialogDescription>
         </AlertDialogHeader>
         <div>
           <InputOTP
             maxLength={6}
             value={passkey}
             onChange={(value) => setPasskey(value)}
+            id="otp"
           >
             <InputOTPGroup className="shad-otp">
               <InputOTPSlot index={0} className="shad-otp-slot" />

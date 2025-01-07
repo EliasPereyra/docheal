@@ -7,9 +7,10 @@ import { convertFileToUrl } from "@/lib/utils";
 type FileUploaderProps = {
   files: File[] | undefined;
   onChange: (file: File[]) => void;
+  id: string;
 };
 
-export function FileUploader({ files, onChange }: FileUploaderProps) {
+export function FileUploader({ id, files, onChange }: FileUploaderProps) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     onChange(acceptedFiles);
   }, []);
@@ -23,7 +24,7 @@ export function FileUploader({ files, onChange }: FileUploaderProps) {
       {...getRootProps()}
       className="p-10 w-full text-center bg-[#181D30] hover:bg-[#1b1f35] border border-dashed border-[#2C3558] hover:border-[#47548a] transition-colors cursor-pointer"
     >
-      <input {...getInputProps()} />
+      <input id={id} {...getInputProps()} />
       {files && files?.length > 0 ? (
         <Image
           src={convertFileToUrl(files[0])}
@@ -47,7 +48,7 @@ export function FileUploader({ files, onChange }: FileUploaderProps) {
               <span>o arrastra un archivo</span>
             </p>
             <small className="text-slate-500">
-              SVG, PNG, JPG (max. 800x400px)
+              <strong>SVG, PNG, JPG</strong> (max. 800x400px)
             </small>
           </div>
         </>
