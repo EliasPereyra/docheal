@@ -1,6 +1,6 @@
 {
   "name": "docheal",
-  "version": "0.3.25",
+  "version": "0.3.26",
   "private": true,
   "author": {
     "name": "EliasPereyra",
@@ -35,6 +35,7 @@
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.2",
     "@tanstack/react-table": "^8.20.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
