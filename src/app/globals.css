@@ -70,7 +70,7 @@
 
 @layer utilities {
   .radio-group {
-    @apply border border-[#2C3558];
+    @apply border border-[#2C3558] text-[#3e4977];
   }
 
   .date-picker {
