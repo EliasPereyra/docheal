@@ -3,7 +3,9 @@ import Topbar from "@/components/topbar";
 import { getPatient, getUser } from "@/lib/actions/patient.actions";
 
 export default async function PatientsLayout({
-  params: { userId },
+  params: {
+    params: { userId },
+  },
   children,
 }: {
   params: SearchParamProps;
