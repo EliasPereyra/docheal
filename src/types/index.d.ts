@@ -16,15 +16,15 @@ declare interface User extends CreateUserParams {
 }
 
 declare interface RegisterPatientParams extends CreateUserParams {
-  fullname: string;
-  email: string;
-  phoneNumber: string;
+  fullname: string | undefined;
+  email: string | undefined;
+  phoneNumber: string | undefined;
   birthDate: Date;
   gender: Gender;
   address: string;
   profession: string;
   civilStatus: string;
-  phoneNumberAlt: string;
+  phoneNumberAlt: string | undefined;
   healthInsuranceNumber: string;
   allergies: string | undefined;
   currentMedicines: string | undefined;
