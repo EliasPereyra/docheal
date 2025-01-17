@@ -15,6 +15,7 @@ import { FileUploader } from "../fileUploader";
 import { SelectItem } from "../ui/select";
 import { Label } from "../ui/label";
 
+import { useUser } from "@/context/UserContext";
 import { PatientFormSchemaValidation } from "@/lib/validation";
 import { registerPatient } from "@/lib/actions/patient.actions";
 import {
@@ -24,7 +25,8 @@ import {
   patientFormDefaultValues,
 } from "@/constants";
 
-export function UserDataForm({ user }: { user: User }) {
+export function UserDataForm() {
+  const { user } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -51,10 +53,10 @@ export function UserDataForm({ user }: { user: User }) {
 
     try {
       const patient = {
-        userId: user.$id,
-        fullname: user.fullname,
-        email: user.email,
-        phoneNumber: user.phoneNumber,
+        userId: user?.$id,
+        fullname: user?.name,
+        email: user?.email,
+        phoneNumber: user?.phone,
         birthDate: new Date(values.birthDate),
         gender: values.gender,
         address: values.address,
@@ -192,7 +194,12 @@ export function UserDataForm({ user }: { user: User }) {
                                 id={option}
                                 className="radio-group"
                               />
-                              <Label htmlFor={option}>{option}</Label>
+                              <Label
+                                className="text-slate-200"
+                                htmlFor={option}
+                              >
+                                {option}
+                              </Label>
                             </div>
                           ))}
                         </RadioGroup>
