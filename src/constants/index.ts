@@ -24,6 +24,19 @@ export const patientFormDefaultValues = {
   privacyConsent: false,
 };
 
+export const patientPersonalFormDefaultValues = {
+  userId: "",
+  fullName: "",
+  email: "",
+  phoneNumber: "",
+  birthDate: new Date(Date.now()),
+  gender: undefined,
+  address: "",
+  profession: "",
+  civilStatus: undefined,
+  phoneNumberAlt: "",
+};
+
 export const IDTypes = ["DNI", "Carnet de Extranjería", "Pasaporte"];
 
 export const civilStatus = [
