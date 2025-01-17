@@ -14,21 +14,12 @@ export const PatientRegistrationSchemaValidation = z.object({
     .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
 });
 
-// TODO: Refactor some variable names for better readability
 /**
  * The validation schema for filling in the patient's information for the doctor.
  *
  * **Note**: `idType` se refiere al tipo de identificación más común para el país de Argentina.
  */
 export const PatientFormSchemaValidation = z.object({
-  fullName: z
-    .string()
-    .min(2, "At least a name is required")
-    .max(50, "The limit is 50 characters"),
-  email: z.string().email("Invalid email address"),
-  phoneNumber: z
-    .string()
-    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
   birthDate: z.coerce.date(),
   gender: z.enum(["Hombre", "Mujer", "Otro"]),
   address: z
@@ -40,9 +31,7 @@ export const PatientFormSchemaValidation = z.object({
     .min(2, "At least a profession is required")
     .max(50, "The limit is 50 characters"),
   civilStatus: z.enum(["Single", "Married", "Divorced", "Widow"]),
-  phoneNumberAlt: z
-    .string()
-    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+  phoneNumberAlt: z.string().optional(),
   healthInsuranceNumber: z
     .string()
     .min(6, "The limit is 6 characters")
@@ -106,6 +95,31 @@ export const CancelAppointmentFormSchemaValidation = z.object({
     .string()
     .min(5, "The reason must be at least 5 characters long")
     .max(500, "The limit is 500 characters"),
+});
+
+export const PersonalFormSchemaValidation = z.object({
+  fullName: z
+    .string()
+    .min(2, "At least a name is required")
+    .max(50, "The limit is 50 characters"),
+  email: z.string().email("Invalid email address"),
+  phoneNumber: z
+    .string()
+    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+  birthDate: z.coerce.date(),
+  gender: z.enum(["Hombre", "Mujer", "Otro"]),
+  address: z
+    .string()
+    .min(6, "Address must be at least 5 characters long")
+    .max(100, "The limit is 100 characters"),
+  profession: z
+    .string()
+    .min(2, "At least a profession is required")
+    .max(50, "The limit is 50 characters"),
+  civilStatus: z.enum(["Single", "Married", "Divorced", "Widow"]),
+  phoneNumberAlt: z
+    .string()
+    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
 });
 
 export const getAppointmentSchema = (type: string) => {
