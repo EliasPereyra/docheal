@@ -21,7 +21,7 @@ export default function Home() {
         width={400}
         height={400}
       />
-      <Logo w={100} h={100} className="mb-6" />
+      <Logo w={100} h={100} className="mb-2" />
       <h1 className="text-3xl text-pretty text-center md:w-[15ch] md:text-5xl font-bold text-[#fff]">
         Consulta tu problema de salud
       </h1>
