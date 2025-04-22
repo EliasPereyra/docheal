@@ -15,7 +15,7 @@ export default function Logo({
   return (
     <Link href={href}>
       <Image
-        src="/assets/docheal-logo.png"
+        src="/assets/logo.png"
         alt="Logo oficial de la página"
         width={w}
         height={h}
