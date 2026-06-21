@@ -5,8 +5,11 @@ import { getPatient } from "@/lib/actions/patient.actions";
 import AppointmentForm from "@/components/CustomForms/appointmentForm";
 
 export default async function Appointment({
-  params: { userId },
-}: SearchParamProps) {
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}) {
+  const { userId } = await params;
   const patient = await getPatient(userId);
 
   return (

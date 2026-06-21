@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState, startTransition } from "react";
 
 import { AlertDialogAction } from "@radix-ui/react-alert-dialog";
 import {
@@ -22,29 +22,25 @@ import Loader from "./loaders";
 export default function KeyPassModal() {
   const path = usePathname();
   const router = useRouter();
-  const [open, setOpen] = useState(false);
   const [passkey, setPasskey] = useState("");
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const encryptedKey =
     typeof window !== "undefined"
       ? window.localStorage.getItem("passkey")
       : null;
 
-  useEffect(() => {
-    const accessKey = encryptedKey && decryptKey(encryptedKey);
+  const accessKey = encryptedKey && decryptKey(encryptedKey);
+  const isAuthenticated = accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY;
 
-    if (path) {
-      if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
-        setOpen(false);
-        setIsLoading(true);
-        router.push("/admin");
-      } else {
-        setOpen(true);
-      }
-    }
-  }, [encryptedKey]);
+  const [open, setOpen] = useState(!isAuthenticated);
+
+  if (isAuthenticated && path) {
+    startTransition(() => {
+      router.push("/admin");
+    });
+    return <Loader />;
+  }
 
   const validatePasskey = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -64,8 +60,6 @@ export default function KeyPassModal() {
   const closeModal = () => {
     setOpen(false);
   };
-
-  if (isLoading) return <Loader />;
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>

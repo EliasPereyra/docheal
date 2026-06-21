@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Profile({
-  params: { userId },
-}: SearchParamProps) {
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}) {
+  const { userId } = await params;
   const patient = await getPatient(userId);
 
   return (

@@ -3,14 +3,13 @@ import Topbar from "@/components/topbar";
 import { getPatient, getUser } from "@/lib/actions/patient.actions";
 
 export default async function PatientsLayout({
-  params: {
-    params: { userId },
-  },
+  params,
   children,
 }: {
-  params: SearchParamProps;
+  params: Promise<{ userId: string }>;
   children: React.ReactNode;
 }) {
+  const { userId } = await params;
   const user = await getUser(userId);
 
   let patient;
