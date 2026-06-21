@@ -41,7 +41,7 @@ export default function AppointmentForm({
       additionalNotes: appointment ? appointment?.additionalNotes : "",
       appointmentDate: appointment
         ? new Date(appointment?.appointmentDate)
-        : new Date(Date.now()),
+        : new Date(),
       cancellationReason: appointment?.cancellationReason || "",
     },
   });

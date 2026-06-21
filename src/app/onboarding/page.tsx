@@ -4,15 +4,21 @@ import Link from "next/link";
 import { RegisterForm } from "@/components/CustomForms/registerForm";
 import KeyPassModal from "@/components/keyPassModal";
 import { Metadata } from "next";
+import { use } from "react";
 
 export const metadata: Metadata = {
   title: "Onboarding | DocHeal Web App",
   description:
-    "Un Sistema de gestión de turnos para los pacientes, donde pueden registrarse, agendar turnos y administrarlos.",
+    "Un Sistema de gestion de turnos para los pacientes, donde pueden registrarse, agendar turnos y administrarlos.",
 };
 
-export default function Onboarding({ searchParams }: SearchParamProps) {
-  const isAdmin = searchParams?.admin === "true";
+export default function Onboarding({
+  searchParams,
+}: {
+  searchParams: Promise<{ admin?: string }>;
+}) {
+  const params = use(searchParams);
+  const isAdmin = params.admin === "true";
 
   return (
     <section className="w-full flex items-center text-slate-200 p-10 md:p-20">

@@ -4,6 +4,8 @@ import Topbar from "@/components/topbar";
 import { columns } from "@/components/columns";
 import { getLatestAppointments } from "@/lib/actions/appointment.actions";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPage() {
   const latestAppointments = await getLatestAppointments();
 

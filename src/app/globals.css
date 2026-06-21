@@ -1,6 +1,71 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --shadow: 0 0 2rem #2485ae61;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  50% {
+    opacity: 0;
+  }
+}
 
 @layer base {
   :root {
@@ -74,27 +139,27 @@
   }
 
   .date-picker {
-    @apply w-full h-10 py-2 bg-[#181D30] border-[#2C3558] rounded-sm outline-none overflow-hidden border-transparent placeholder:text-slate-900 !important;
+    @apply w-full h-10 py-2 bg-[#181D30] border-[#2C3558] rounded-sm outline-none overflow-hidden border-transparent placeholder:text-slate-900;
   }
 
   .input-phone {
-    @apply w-full h-10 p-0 border border-[#2C3558] rounded-sm outline-none text-slate-900 bg-[#181D30] overflow-hidden focus-visible:border-none focus-visible:outline-none !important;
+    @apply w-full h-10 p-0 border border-[#2C3558] rounded-sm outline-none text-slate-900 bg-[#181D30] overflow-hidden focus-visible:border-none focus-visible:outline-none;
   }
 
   .shad-error {
-    @apply text-red-400 !important;
+    @apply text-red-400;
   }
 
   .shad-otp {
-    @apply w-full flex !important;
+    @apply w-full flex;
   }
 
   .shad-otp-slot {
-    @apply font-bold text-[#0C8EAF] flex justify-center gap-4 border-[#0C8EAF] rounded-lg size-16 outline-none !important;
+    @apply font-bold text-[#0C8EAF] flex justify-center gap-4 border-[#0C8EAF] rounded-lg size-16 outline-none;
   }
 
   .shad-alert-dialog {
-    @apply bg-[#181D30] border-[#2C3558] outline-none space-y-5 !important;
+    @apply bg-[#181D30] border-[#2C3558] outline-none space-y-5;
   }
 
   .data-table {
@@ -102,7 +167,7 @@
   }
 
   .shad-table {
-    @apply overflow-auto md:overflow-hidden rounded-lg !important;
+    @apply overflow-auto md:overflow-hidden rounded-lg;
   }
 }
 
